@@ -6,10 +6,18 @@ export default defineConfig({
   plugins: [react()],
   preview: {
     host: true,
-    port: process.env.PORT || 10000
+    port: process.env.PORT || 10000,
+    allowedHosts: [
+      "mvp1-0-masterschool-music-project.onrender.com",
+      "localhost"
+    ]
   },
   server: {
     host: true,
-    port: process.env.PORT || 10000
+    port: process.env.PORT || 10000,
+    allowedHosts: [
+      "mvp1-0-masterschool-music-project.onrender.com",
+      "localhost"
+    ]
   }
 });
