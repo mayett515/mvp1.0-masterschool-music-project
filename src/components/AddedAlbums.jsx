@@ -37,10 +37,10 @@ const AddedAlbums = ({ albums, onSelectAlbum, onAddReview }) => {
                     "https://placehold.co/400x400?text=No+Image"
                   }
                   alt={album.title}
-                  className="w-full h-48 object-cover rounded-lg max-w-40 max-h-40"
+                  className="w-full h-48 object-cover rounded-lg max-w-24"
                 />
               </figure>
-              <div className="card-body items-center text-center py-4 max-w-24">
+              <div className="card-body items-center text-center py-4">
                 {/* Removed star rating here and keeping only the numeric display */}
                 <p className="text-sm font-medium mb-2 badge badge-primary badge-lg">
                   {getAverageRating(album)}
