@@ -37,7 +37,7 @@ const AddedAlbums = ({ albums, onSelectAlbum, onAddReview }) => {
                     "https://placehold.co/400x400?text=No+Image"
                   }
                   alt={album.title}
-                  className="w-full h-48 object-cover rounded-lg max-w-170"
+                  className="w-full h-48 object-cover rounded-lg max-w-150"
                 />
               </figure>
               <div className="card-body items-center text-center py-4">
