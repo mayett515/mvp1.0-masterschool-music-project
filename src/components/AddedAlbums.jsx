@@ -4,7 +4,7 @@ const AddedAlbums = ({ albums, onSelectAlbum, onAddReview }) => {
   // Handle albums with no reviews
   const getAverageRating = (album) => {
     if (!album) return "No reviews yet";
-    return album.average_rating !== null
+    return album.average_rating != null
       ? album.average_rating.toFixed(1)
       : "No reviews yet";
   };

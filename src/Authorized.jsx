@@ -20,10 +20,10 @@ export const Authorized = () => {
       setLoading(true);
       const albumsData = await fetchAlbums();
       setAlbums(albumsData);
-      setLoading(false);
     } catch (error) {
       console.error("Failed to load albums:", error);
       setError("Failed to load albums. Please try again later.");
+    } finally {
       setLoading(false);
     }
   };
@@ -122,8 +122,11 @@ export const Authorized = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Title */}
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-2">Music Album Review App</h1>
+        <h1 className="text-4xl font-bold mb-2 select-none">
+          Music Album Review App
+        </h1>
         <div className="divider max-w-md mx-auto"></div>
       </div>
 

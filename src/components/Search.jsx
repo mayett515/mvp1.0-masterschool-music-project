@@ -18,7 +18,9 @@ const Search = ({ onAlbumAdded }) => {
     try {
       setLoading(true);
       setError(null);
+      console.log("adding");
       const addedAlbum = await addAlbum({ title, artist });
+      console.log("added", addedAlbum);
       onAlbumAdded(addedAlbum); // Pass the newly added album to the parent
       setTitle("");
       setArtist("");
