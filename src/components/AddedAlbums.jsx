@@ -21,11 +21,11 @@ const AddedAlbums = ({ albums, onSelectAlbum, onAddReview }) => {
           </p>
         </div>
       ) : (
-        <div className="album-grid">
+        <div className="flex gap-4 flex-wrap justify-center">
           {albums.map((album) => (
             <div
               key={album.id}
-              className="card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow"
+              className="w-full md:max-w-[300px] card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow  border border-solid border-gray-400"
             >
               <figure
                 className="pt-4 px-4 cursor-pointer transition-transform duration-300 hover:translate-y-[-5px]"

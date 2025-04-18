@@ -132,7 +132,7 @@ export const Authorized = () => {
 
       {/* Always show search bar */}
       <div className="max-w-xl mx-auto mb-8">
-        <Search onAlbumAdded={handleAlbumAdded} />
+        {!selectedAlbumId && <Search onAlbumAdded={handleAlbumAdded} />}
       </div>
 
       {/* Dynamic content area */}
