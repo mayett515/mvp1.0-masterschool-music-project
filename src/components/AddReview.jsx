@@ -138,8 +138,9 @@ const AddReview = ({ albumId, onReviewAdded, onBack, album }) => {
               <textarea
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                className="textarea textarea-bordered h-40 text-center"
+                className="textarea textarea-bordered h-40 text-center w-full resize-none"
                 placeholder="Share your thoughts on this album"
+                rows={5}
               />
             </div>
 

@@ -40,7 +40,7 @@ const AddedAlbums = ({ albums, onSelectAlbum, onAddReview }) => {
                   className="w-full h-48 object-cover rounded-lg"
                 />
               </figure>
-              <div className="card-body items-center text-center py-4">
+              <div className="card-body items-center text-center py-4 max-w-24">
                 {/* Removed star rating here and keeping only the numeric display */}
                 <p className="text-sm font-medium mb-2 badge badge-primary badge-lg">
                   {getAverageRating(album)}
