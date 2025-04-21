@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { addReview } from "../api";
 
-const AddReview = ({ albumId, onReviewAdded, onBack, album }) => {
+const AddReview = ({ albumId, onReviewAdded, onBack, album, currentUser }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
@@ -26,13 +26,18 @@ const AddReview = ({ albumId, onReviewAdded, onBack, album }) => {
         body,
         rating: Number(rating), // Ensure rating is a number
         album_id: albumId,
+        // The backend will use the authenticated user's ID
       };
 
       await addReview(reviewData);
       onReviewAdded();
     } catch (error) {
       console.error("Failed to submit review:", error);
-      setError("Failed to submit review. Please try again.");
+      if (error.response?.data?.error) {
+        setError(error.response.data.error);
+      } else {
+        setError("Failed to submit review. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { fetchReviews } from "../api";
 
-const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
+const Reviews = ({ albumId, onBack, onSelectReview, album, currentUser }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userHasReviewed, setUserHasReviewed] = useState(false);
 
   useEffect(() => {
     const loadReviews = async () => {
@@ -12,6 +13,15 @@ const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
         setLoading(true);
         const reviewsData = await fetchReviews(albumId);
         setReviews(reviewsData);
+
+        // Check if current user has already reviewed this album
+        if (currentUser) {
+          const userReview = reviewsData.find(
+            (review) => review.user_id === currentUser.id
+          );
+          setUserHasReviewed(!!userReview);
+        }
+
         setLoading(false);
       } catch (error) {
         console.error("Failed to load reviews:", error);
@@ -21,7 +31,7 @@ const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
     };
 
     loadReviews();
-  }, [albumId]);
+  }, [albumId, currentUser]);
 
   if (loading) {
     return (
@@ -53,6 +63,17 @@ const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
       </div>
     );
   }
+
+  // Format date for display
+  const formatDate = (dateString) => {
+    if (!dateString) return "Unknown date";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -118,8 +139,9 @@ const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
             window.dispatchEvent(reviewEvent);
           }}
           className="btn btn-primary"
+          disabled={userHasReviewed}
         >
-          Add a Review
+          {userHasReviewed ? "You've Reviewed This Album" : "Add a Review"}
         </button>
       </div>
 
@@ -138,6 +160,24 @@ const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
               onClick={() => onSelectReview(review)}
             >
               <div className="card-body">
+                <div className="flex justify-between items-center mb-3">
+                  <div className="flex items-center">
+                    <div className="avatar mr-3">
+                      <div className="w-8 h-8 rounded-full">
+                        <img
+                          src="https://placehold.co/100x100?text=User"
+                          alt="User avatar"
+                        />
+                      </div>
+                    </div>
+                    <span className="font-semibold">
+                      {review.username || "Anonymous"}
+                    </span>
+                  </div>
+                  <span className="text-sm text-gray-500">
+                    {formatDate(review.created_at)}
+                  </span>
+                </div>
                 <div className="flex justify-center mb-2">
                   <div className="rating rating-md">
                     {[1, 2, 3, 4, 5].map((star) => (
@@ -159,6 +199,13 @@ const Reviews = ({ albumId, onBack, onSelectReview, album }) => {
                   {review.body.substring(0, 150)}
                   {review.body.length > 150 ? "..." : ""}
                 </p>
+
+                {currentUser && review.user_id === currentUser.id && (
+                  <div className="mt-3 flex justify-center">
+                    <span className="badge badge-primary">Your Review</span>
+                  </div>
+                )}
+
                 <div className="card-actions justify-center mt-4">
                   <button className="btn btn-sm btn-outline">
                     Read Full Review

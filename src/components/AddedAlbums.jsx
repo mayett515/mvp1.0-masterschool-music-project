@@ -25,7 +25,7 @@ const AddedAlbums = ({ albums, onSelectAlbum, onAddReview }) => {
           {albums.map((album) => (
             <div
               key={album.id}
-              className="w-full md:max-w-[300px] card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow  border border-solid border-gray-400"
+              className="w-full md:max-w-[300px] card bg-base-100 shadow-lg hover:shadow-2xl transition-shadow border border-solid border-gray-400"
             >
               <figure
                 className="pt-4 px-4 cursor-pointer transition-transform duration-300 hover:translate-y-[-5px]"
