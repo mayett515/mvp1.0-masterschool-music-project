@@ -46,8 +46,8 @@ const AboutPage = () => {
             <div className="avatar">
               <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                 <img
-                  src="https://placehold.co/200x200?text=Profile"
-                  alt="Creator"
+                  src="https://i.ibb.co/tpq2rHRZ/1000030735-1.jpg"
+                  alt="Matthias von Mach"
                 />
               </div>
             </div>

@@ -129,7 +129,9 @@ const App = () => {
 
         <footer className="footer footer-center p-4 bg-base-300 text-base-content">
           <div>
-            <p>© 2025 Music Album Review App - A project by [Your Name]</p>
+            <p>
+              © 2025 Music Album Review App - A project by Matthias von Mach
+            </p>
           </div>
         </footer>
       </div>

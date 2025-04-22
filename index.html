@@ -36,6 +36,13 @@
       }
     </style>
     <link href="/src/styles.css" rel="stylesheet" />
+    <script>
+      // Initialize theme from localStorage or use dark as default
+      document.addEventListener("DOMContentLoaded", function () {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      });
+    </script>
   </head>
   <body>
     <div id="root">
